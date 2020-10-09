@@ -12,11 +12,9 @@ export default (rootReducer: any, rootSaga: any) => {
   /* ------------- Saga Middleware ------------- */
   const sagaMiddleware = createSagaMiddleware({});
   middleware.push(sagaMiddleware);
-
+  //middleware.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
   enhancers.push(applyMiddleware(...middleware));
-  enhancers.push(
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+  
   const store = createStore(rootReducer, compose(...enhancers));
 
   // kick off root saga

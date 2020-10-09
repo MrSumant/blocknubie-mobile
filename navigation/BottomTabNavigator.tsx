@@ -7,6 +7,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import LoginScreen from "../screens/LoginScreen"
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -69,5 +70,19 @@ function TabTwoNavigator() {
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const LoginStack = createStackNavigator();
+
+export function LoginNavigator() {
+  return (
+    <LoginStack.Navigator>
+      <LoginStack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerTitle: 'Login' }}
+      />
+    </LoginStack.Navigator>
   );
 }
