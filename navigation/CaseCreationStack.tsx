@@ -1,22 +1,23 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
+import CaseCreationScreen from "../screens/CaseCreationScreen";
 import LoginScreen from "../screens/LoginScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
-
-const CaseCreationStack = createBottomTabNavigator();
+import HomePageView from "../screens/HomeScreen";
+const CaseCreationStack = createStackNavigator();
 
 export function CaseCreationNavigator() {
   return (
     <CaseCreationStack.Navigator>
       <CaseCreationStack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ headerTitle: "Login" }}
+        name="Home"
+        component={HomePageView}
+        options={{ headerTitle: "Blocknubie Care" }}
       />
       <CaseCreationStack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{ headerTitle: "Welcome" }}
+        name="CreateCase"
+        component={CaseCreationScreen}
+        options={{ headerTitle: "Create Case" }}
       />
     </CaseCreationStack.Navigator>
   );
