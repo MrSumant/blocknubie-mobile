@@ -40,7 +40,7 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
   const { signingIn, signInError, userUnconfirmed, authenticated } = auth;
 
   const successfulSignin = authenticated
-    ? navigation.navigate("welcome")
+    ? navigation.navigate("Welcome")
     : null;
 
   const notConfirmed =

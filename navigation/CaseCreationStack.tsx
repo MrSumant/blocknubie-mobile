@@ -1,23 +1,23 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import LoginScreen from "../screens/LoginScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 
-const LoginStack = createStackNavigator();
+const CaseCreationStack = createBottomTabNavigator();
 
-export function LoginNavigator() {
+export function CaseCreationNavigator() {
   return (
-    <LoginStack.Navigator>
-      <LoginStack.Screen
+    <CaseCreationStack.Navigator>
+      <CaseCreationStack.Screen
         name="Login"
         component={LoginScreen}
         options={{ headerTitle: "Login" }}
       />
-      <LoginStack.Screen
+      <CaseCreationStack.Screen
         name="Welcome"
         component={WelcomeScreen}
         options={{ headerTitle: "Welcome" }}
       />
-    </LoginStack.Navigator>
+    </CaseCreationStack.Navigator>
   );
 }

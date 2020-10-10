@@ -268,6 +268,34 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F4F8F9",
   },
+  centerContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 200,
+    height: 200,
+  },
+  h1: {
+    fontSize: 24,
+  },
+  h2: {
+    fontSize: 22,
+  },
+  h3: {
+    fontSize: 20,
+  },
+  h4: {
+    fontSize: 18,
+  },
+  h5: {
+    fontSize: 16,
+  },
+  h6: {
+    fontSize: 14,
+  },
 });
 
 export default styles;

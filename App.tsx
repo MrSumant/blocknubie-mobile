@@ -10,6 +10,18 @@ import { Provider } from "react-redux";
 import createStore from "./reducers/index";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { Amplify } from "aws-amplify";
+import { AmplifyConfig } from "./Config/amplify-config";
+
+Amplify.configure({
+  Auth: {
+    region: AmplifyConfig.cognito.REGION,
+    userPoolId: AmplifyConfig.cognito.USER_POOL_ID,
+    identityPoolId: AmplifyConfig.cognito.IDENTITY_POOL_ID,
+    userPoolWebClientId: AmplifyConfig.cognito.APP_CLIENT_ID,
+  },
+});
+
 const store = createStore();
 console.log(store);
 export default function App() {
