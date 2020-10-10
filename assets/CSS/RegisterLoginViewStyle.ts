@@ -1,295 +1,273 @@
 import { StyleSheet } from "react-native";
+import Dimensions from "../../constants/Layout";
 
 const styles = StyleSheet.create({
-    root: {
-        display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "center"
-    },
+  root: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    marginHorizontal: 20,
+  },
 
-    popupFormRoot: {
-        display: 'flex',
-        flexDirection: 'column',
-        maxWidth: '100%',
-        maxHeight: '100vh',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: '100px'
-    },
+  popupFormRoot: {
+    display: "flex",
+    flexDirection: "column",
+    maxWidth: "100%",
+    maxHeight: "100vh",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "100px",
+  },
 
-    paper: {
-        display: 'flex',
-        minWidth: '100%',
-        minHeight: '100vh',
-        backgroundColor: '#F4F8F9'
-    },
+  paper: {
+    display: "flex",
+    minWidth: "100%",
+    minHeight: "100vh",
+  },
 
-    popupFormPaper: {
-        minWidth: '400px',
-        minHeight: '80vh',
-        padding: 2
-    },
+  popupFormPaper: {
+    minWidth: "400px",
+    minHeight: "80vh",
+    padding: 2,
+  },
 
-    navPaper: {
-        minWidth: "370px",
-        minHeight: "600px",
-        // padding: 2,
-        backgroundColor: "#F4F8F9"
-    },
+  navPaper: {
+    minWidth: "370px",
+    minHeight: "600px",
+    // padding: 2,
+  },
 
-    sliderContainer: {
-        marginTop: '10%',
-        maxWidth: '80%',
-        maxHeight: '30vh',
-        minWidth: '80%'
-    },
+  sliderContainer: {
+    marginTop: "10%",
+    maxWidth: "80%",
+    maxHeight: "30vh",
+    minWidth: "80%",
+  },
 
-    slider: {
-        maxWidth: '80%'
-    },
+  slider: {
+    maxWidth: "80%",
+  },
 
-    textfield: {
-        maxWidth: '75%',
-        height: "45px",
-        boxShadow: "5px 5px 5px #b3b3b3",
-        borderRadius: 20,
-        paddingLeft: '20px',
-        paddingRight: '20px',
-        background: "#F4F8F9",
-    },
+  textfield: {
+    maxWidth: "75%",
+    height: "45px",
+    borderRadius: 20,
+    paddingLeft: "20px",
+    paddingRight: "20px",
+  },
 
-    desktopTextfield: {
-        maxWidth: '100%',
-        justifyContent: "center",
-        height: "60px",
-        boxShadow: "5px 5px 5px #b3b3b3",
-        borderRadius: 20,
-        paddingLeft: '20px',
-        background: "#F4F8F9"
-    },
+  desktopTextfield: {
+    maxWidth: "100%",
+    justifyContent: "center",
+    height: "60px",
+    borderRadius: 20,
+    paddingLeft: "20px",
+  },
 
+  familyMembersButton: {
+    width: "280px",
+    borderRadius: 20,
+    paddingLeft: "20px",
+    marginBottom: "250px",
+  },
 
-    familyMembersButton: {
+  createCaseButton: {
+    //width: "280px",
+    // borderRadius: 20,
+    // paddingLeft: "20px",
+    // marginBottom: '250px'
+    color: "#1261A0",
+  },
 
-        width: "280px",
-        boxShadow: "5px 5px 5px #b3b3b3",
-        borderRadius: 20,
-        paddingLeft: "20px",
-        marginBottom: '250px'
-    },
+  switch: {
+    color: "white",
+  },
 
-    createCaseButton: {
+  resendCodeButton: {
+    borderRadius: 15,
+    marginTop: "30px",
+    width: "20%",
+  },
 
-        //width: "280px",
-        //boxShadow: "5px 5px 5px #b3b3b3",
-        // borderRadius: 20,
-        // backgroundColor: "#1261A0"
-        // paddingLeft: "20px",
-        // marginBottom: '250px'
-        color: "#1261A0"
-    },
+  ccTextField: {
+    width: "140px",
+    marginLeft: "30px",
+    marginRight: "20px",
+    borderRadius: 20,
+    paddingLeft: "20px",
+    color: "transparent",
+  },
 
-    switch: {
-        color: "default"
-    },
+  chip: {
+    width: "80px",
+    height: "35px",
+    fontSize: 16,
+    color: "#494e57",
+  },
 
-    resendCodeButton: {
-        borderRadius: 15,
-        marginTop: '30px',
-        backgroundColor: "#1261A0",
-        width: "20%"
-    },
+  logo: {
+    height: "25vh",
+    width: "25vh",
+  },
 
-    ccTextField: {
-        width: "140px",
-        marginLeft: "30px",
-        marginRight: "20px",
-        boxShadow: "5px 5px 5px #b3b3b3",
-        borderRadius: 20,
-        paddingLeft: "20px",
-        color: "transparent"
-    },
+  button: {
+    borderRadius: 15,
+    height: 40,
+    color: "#1261A0",
+    marginHorizontal: 20,
+    marginVertical: 20,
+  },
 
-    chip: {
-        boxShadow: "5px 5px 5px #b3b3b3",
-        width: "80px",
-        height: "35px",
-        fontSize: '16px',
-        color: '#494e57',
-    },
+  addButton: {
+    width: "30vw",
+    marginBottom: "10vh",
+    borderRadius: 15,
+    height: "40px",
+  },
+  registerButton: {
+    borderRadius: 15,
+    width: "30%",
+    height: "40px",
+  },
 
-    logo: {
-        height: '25vh',
-        width: '25vh'
-    },
+  desktopRegisterButton: {
+    borderRadius: 15,
+    width: "55%",
+    height: "50px",
+  },
 
-    button: {
-        borderRadius: 15,
-        height: "40px",
-        backgroundColor: "#1261A0",
-    },
+  logoutButton: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "center",
+    borderRadius: 15,
+    // marginLeft: 1),
+    marginTop: 1,
+    width: "10%",
+    height: "40px",
+  },
 
-    addButton: {
-        width: '30vw',
-        marginBottom: '10vh',
-        borderRadius: 15,
-        height: "40px",
-        backgroundColor: "#1261A0",
-    },
-    registerButton: {
-        borderRadius: 15,
-        width: '30%',
-        height: "40px",
-        backgroundColor: "#1261A0",
-    },
+  confirmButton: {
+    borderRadius: 15,
+    width: "20%",
+    height: "40px",
+  },
 
-    desktopRegisterButton: {
-        borderRadius: 15,
-        width: '55%',
-        height: "50px",
-        backgroundColor: "#1261A0",
-    },
+  homeScreenButton: {
+    width: "100%",
+    marginTop: 1,
+    borderRadius: 12,
+  },
 
-    logoutButton: {
-        display: 'flex',
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'center',
-        borderRadius: 15,
-        // marginLeft: 1),
-        marginTop: 1,
-        width: "10%",
-        height: "40px",
-        backgroundColor: "#1261A0",
-        
-    },
+  uploadButton: {
+    width: "50%",
+    minHeight: "110px",
+    marginTop: 1,
+    borderRadius: 12,
+  },
+  emergencyButton: {
+    width: "80%",
+    marginTop: 8,
+    color: "white",
+    borderRadius: 12,
+  },
 
-    confirmButton: {
-        borderRadius: 15,
-        width: "20%",
-        height: "40px",
-        backgroundColor: "#1261A0",
-        
-    },
+  buttonText: {
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 18,
+  },
 
-    homeScreenButton: {
-        width: "100%",
-        marginTop: 1,
-        borderRadius: "12px"
-    },
+  linkText: {
+    margin: "20px",
+  },
+  title: {
+    fontFamily: "Montserrat Semibold",
+    fontSize: 36,
+    marginTop: "-5vh",
+  },
 
-    uploadButton: {
-        width: "50%",
-        minHeight: "110px",
-        marginTop: 1,
-        borderRadius: "12px"
-    },
-    emergencyButton: {
-        width: "80%",
-        marginTop: 8,
-        backgroundColor: "red",
-        color: "white",
-        borderRadius: "12px"
-    },
+  menu: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 
-    buttonText: {
-        width: "100%",
-        display: 'flex',
-        flexDirection: 'row',
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        fontWeight: "bold",
-        padding: "5px"
-    },
+  closebtn: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 1,
+    borderRadius: 15,
+    justifyContent: "flex-end",
+    marginBottom: 3,
+    marginLeft: 20,
+  },
 
-    linkText: {
-        margin: "20px"
-    },
-    title: {
-        fontFamily: 'Montserrat Semibold',
-        fontSize: "36px",
-        marginTop: '-5vh'
-    },
+  removebtn: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 1,
+    borderRadius: 15,
+    justifyContent: "center",
+    marginBottom: 3,
+    marginLeft: 20,
+  },
 
-    menu: {
-        display: 'flex',
-        flexDirection: 'row',
-        flex: 1,
-        alignItems: "center",
-        justifyContent: 'space-between'
-    },
+  settingmenu: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "space-between",
+    marginBottom: 1,
+  },
 
-    closebtn: {
-        display: 'flex',
-        flexDirection: 'row',
-        flex: 1,
-        borderRadius: 15,
-        justifyContent: 'flex-end',
-        marginBottom: 3,
-        marginLeft: 20,
-        backgroundColor: "#1261A0",
-    },
+  navMenuButton: {
+    marginBottom: 1,
+  },
 
-    removebtn: {
-        display: 'flex',
-        flexDirection: 'row',
-        flex: 1,
-        borderRadius: 15,
-        justifyContent: 'center',
-        marginBottom: 3,
-        marginLeft: 20,
-        backgroundColor: "#1261A0",
-    },
+  navMenuUser: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginBottom: 1,
+  },
+  navMenuUserName: {
+    padding: "5px",
+  },
 
-    settingmenu: {
-        display: 'flex',
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'space-between',
-        marginBottom: 1,
-    },
+  formContainer: {
+    marginTop: "-40px",
+  },
 
-    navMenuButton: {
-        marginBottom: 1,
-    },
+  registerFormContainer: {
+    marginTop: "-5vh",
+  },
 
-    navMenuUser: {
-        display: 'flex',
-        flexDirection: 'row',
-        flex: "1 1 auto",
-        alignItems: "center",
-        justifyContent: 'flex-start',
-        marginBottom: 1,
-    },
-    navMenuUserName: {
-        padding: "5px"
-    },
-
-    formContainer: {
-        marginTop: "-40px"
-    },
-
-    registerFormContainer: {
-        marginTop: '-5vh'
-    },
-
-    link: {
-        fontFamily: "Montserrat Semibold",
-        fontSize: "14px",
-        color: "#121212"
-    },
-    subtitleText: {
-        marginLeft: '35px',
-    },
-    stretch: {
-        width: 50,
-        height: 200,
-    },
-    radio: {
-    },
-    checked: {}
+  link: {
+    fontFamily: "Montserrat Semibold",
+    fontSize: 14,
+    color: "#121212",
+  },
+  subtitleText: {
+    marginLeft: "35px",
+  },
+  stretch: {
+    width: 200,
+    height: 200,
+    marginTop: 50,
+    marginHorizontal: Dimensions.width * 0.3,
+  },
+  radio: {},
+  checked: {},
+  container: {
+    backgroundColor: "#F4F8F9",
+  },
 });
 
 export default styles;

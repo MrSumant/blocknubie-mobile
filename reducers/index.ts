@@ -4,7 +4,7 @@ import rootSaga from "../Sagas/";
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
-  authReducer: require("./authReducer").default,
+  auth: require("./authReducer").default,
 });
 
 export default () => {

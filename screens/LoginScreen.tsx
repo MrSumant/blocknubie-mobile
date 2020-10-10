@@ -1,86 +1,131 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { signInRequest } from "../reducers/Actions/authActions";
 import ErrorMessage from "../components/ErrorMessage";
-import {View, Image} from "react-native";
-import classes from "../assets/CSS/RegisterLoginViewStyle"; 
-
-// import styles from "../../Assets/CommonStyle/RegisterLoginViewStyle";
-// import theme from "../../Assets/CommonStyle/InputLabelStyle";
+import { View, Image, Text, StyleSheet } from "react-native";
+import classes from "../assets/CSS/RegisterLoginViewStyle";
+import { validateEmail, validatePassword } from "../Utilities/Utility";
+import {
+  Container,
+  Header,
+  Content,
+  Item,
+  Input,
+  Label,
+  Form,
+  Icon,
+  Button,
+} from "native-base";
+import { ScrollView } from "react-native-gesture-handler";
 
 const logo = require("../assets/images/Blocknubie-logo.png");
 
-class LoginView extends Component {
-    state = {
-        email: "",
-        password: ""
-    };
+const LoginView = ({ signInRequest, auth, navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    handleSubmit = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        this.props.signInRequest({
-            email: this.state.email,
-            password: this.state.password
-        });
-    };
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    signInRequest({
+      email,
+      password,
+    });
+  };
+  const validate = () =>
+    email.length > 0 &&
+    password.length > 0 &&
+    validateEmail(email) &&
+    validatePassword(password);
 
-    handleChange = ({ target: { id, value } }) =>
-        this.setState({ [id]: value });
+  const { signingIn, signInError, userUnconfirmed, authenticated } = auth;
 
-    validate = () =>
-        this.state.email.length > 0 && this.state.password.length > 0 && this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\^$*.\[\]{}\(\)?\-“!@#%&/,><\’:;|_~`])\S{6,99}$/);
+  const successfulSignin = authenticated
+    ? navigation.navigate("welcome")
+    : null;
 
-    render() {
-        const { email, password } = this.state;
+  const notConfirmed =
+    !signingIn && userUnconfirmed
+      ? navigation.navigate("confirm-account")
+      : null;
 
-        const {
-            signingIn,
-            signInError,
-            userUnconfirmed,
-            authenticated
-        } = this.props.auth;
+  if (!signingIn && signInError) {
+    return (
+      <View>
+        <ErrorMessage messageId={signInError.id} />
+      </View>
+    );
+  }
 
-        const successfulSignin = authenticated ? (
-            this.props.navigation.navigate("welcome")
-        ) : null;
+  return (
+    <Container>
+      <Content>
+        <ScrollView style={classes.container}>
+          <Image style={classes.stretch} source={logo} />
+          <Form style={styles.loginForm}>
+            <Item rounded style={styles.input}>
+              <Icon
+                active
+                style={styles.label}
+                name="user-o"
+                type="FontAwesome"
+              />
+              <Input
+                onChangeText={(text) => setEmail(text)}
+                keyboardType="email-address"
+                autoFocus={true}
+                placeholder="Username"
+              />
+            </Item>
+            <Item rounded last style={styles.input}>
+              <Icon active name="lock" type="Feather" />
+              <Input
+                onChangeText={(text) => setPassword(text)}
+                secureTextEntry={true}
+                placeholder="Password"
+              />
+            </Item>
+          </Form>
+          <Button
+            full
+            style={classes.button}
+            onPress={(e: any) => handleSubmit(e)}
+          >
+            <Text style={classes.buttonText}>Login</Text>
+          </Button>
+        </ScrollView>
+      </Content>
+    </Container>
+  );
+};
 
-        const notConfirmed =
-            !signingIn && userUnconfirmed ? (
-                this.props.navigation.navigate("confirm-account")
-            ) : null;
-
-        const errorText =
-            !signingIn && signInError ? (
-                <View>
-                    <ErrorMessage messageId={signInError.id} />
-                </View>
-            ) : null;
-
-        return (
-            <View style={classes.root}>
-                <Image
-                    style={classes.stretch}
-                    source={logo}
-                />
-            </View>
-        );
-    }
-}
-
-const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: { email: any; password: any; }; }) => any) => ({
-    signInRequest: ({ email, password }) =>
-        dispatch(signInRequest({ email, password }))
+const styles = StyleSheet.create({
+  input: {
+    marginVertical: 10,
+    marginRight: 20,
+    marginLeft: 20,
+    alignSelf: "center",
+  },
+  label: {
+    paddingLeft: 25,
+  },
+  loginForm: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  },
 });
 
-// LoginView.propTypes = {
-//     classes: PropTypes.object.isRequired,
-//     auth: PropTypes.object.isRequired
-// };
+const mapDispatchToProps = (
+  dispatch: (arg0: {
+    type: string;
+    payload: { email: any; password: any };
+  }) => any
+) => ({
+  signInRequest: ({ email, password }) =>
+    dispatch(signInRequest({ email, password })),
+});
 
 const mapStateToProps = ({ auth }) => ({ auth });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LoginView);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginView);
