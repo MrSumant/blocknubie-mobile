@@ -4,6 +4,7 @@ import ConfirmAccountScreen from "../screens/ConfirmAccountScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
+import { HomeNavigator } from "./HomeNavigator";
 
 const LoginStack = createStackNavigator();
 
@@ -29,6 +30,11 @@ export function LoginNavigator() {
         name="Confirm-Account"
         component={ConfirmAccountScreen}
         options={{ headerTitle: "Confirm Account"}}
+      />
+      <LoginStack.Screen
+        name="Services"
+        component={HomeNavigator}
+        options={{ headerTitle: "Blocknubie Care" }}
       />
     </LoginStack.Navigator>
   );

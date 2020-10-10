@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { signInRequest } from "../reducers/Actions/authActions";
 import ErrorMessage from "../components/ErrorMessage";
 import { View, Image, Text, StyleSheet } from "react-native";
-import classes from "../assets/CSS/RegisterLoginViewStyle";
+import classes from "../assets/css/RegisterLoginViewStyle";
 import { validateEmail, validatePassword } from "../Utilities/Utility";
 import {
   Container,
@@ -25,8 +25,7 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     signInRequest({
       email,
       password,
@@ -85,11 +84,7 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
               />
             </Item>
           </Form>
-          <Button
-            full
-            style={classes.button}
-            onPress={(e: any) => handleSubmit(e)}
-          >
+          <Button full style={classes.button} onPress={() => handleSubmit()}>
             <Text style={classes.buttonText}>Login</Text>
           </Button>
           <Button full transparent

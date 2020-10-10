@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import { Text } from "native-base";
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
+import classes from "../assets/css/RegisterLoginViewStyle";
+import WaitMessage from "../components/WaitMessage";
 import { welcomeStartRequest } from "../reducers/Actions/authActions";
-
-import classes from "../assets/CSS/RegisterLoginViewStyle";
-import { Container, Content, Text } from "native-base";
-import { View, Image, StyleSheet } from "react-native";
-const logo = require("../assets/images/Blocknubie-logo.png");
 
 const WelcomeScreen = ({
   navigation,
@@ -21,27 +20,15 @@ const WelcomeScreen = ({
   if (welcomed) {
     navigation.push("/basic-information");
   }
+
+  setTimeout(() => {
+    navigation.navigate("Services");
+  }, 2500);
+
   return (
-    <Container>
-      <Content>
-        <View style={classes.centerContainer}>
-          <Image style={[classes.image, styles.marginLogo]} source={logo} />
-          <Text style={[classes.h2, styles.marginLogo]}>Welcome {email}!</Text>
-          <Text style={[classes.h2, styles.marginLogo]}>
-            Let's get you started...
-          </Text>
-        </View>
-      </Content>
-    </Container>
+    <WaitMessage text={[`Welcome ${email}`, "Let's get you started..."]} />
   );
 };
-
-const styles = StyleSheet.create({
-  marginLogo: {
-    marginVertical: 20,
-    marginBottom: 20,
-  },
-});
 
 const mapStateToProps = (state) => ({
   welcomed: state.auth.welcomed,

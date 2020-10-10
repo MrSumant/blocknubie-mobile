@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     flexDirection: "column",
-    alignItems: "center",
     marginHorizontal: 20,
+    backgroundColor: "#F4F8F9",
   },
 
   popupFormRoot: {
@@ -117,6 +117,8 @@ const styles = StyleSheet.create({
     color: "#1261A0",
     marginHorizontal: 20,
     marginVertical: 20,
+    width: Dimensions.width * 0.8,
+    justifyContent: "center",
   },
 
   addButton: {
