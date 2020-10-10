@@ -15,6 +15,7 @@ import {
   Form,
   Icon,
   Button,
+  H3,
 } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -31,6 +32,7 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
       password,
     });
   };
+  
   const validate = () =>
     email.length > 0 &&
     password.length > 0 &&
@@ -57,8 +59,6 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
   }
 
   return (
-    <Container>
-      <Content>
         <ScrollView style={classes.container}>
           <Image style={classes.stretch} source={logo} />
           <Form style={styles.loginForm}>
@@ -92,13 +92,25 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
           >
             <Text style={classes.buttonText}>Login</Text>
           </Button>
+          <Button full transparent
+            onPress={() => navigation.navigate("Register")}
+          >
+            <H3>Create new account</H3>
+          </Button>
+          <Button full transparent
+            //onPress={navigation.navigate("Register")}
+          >
+            <H3>Forgot password</H3>
+          </Button>
         </ScrollView>
-      </Content>
-    </Container>
   );
 };
 
 const styles = StyleSheet.create({
+  boldText: {
+    fontWeight: "bold"
+  },
+
   input: {
     marginVertical: 10,
     marginRight: 20,
