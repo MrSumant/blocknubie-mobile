@@ -21,6 +21,7 @@ import AuthActions from "../reducers/Actions/authActions";
 import { call, takeLatest, all, put } from "redux-saga/effects";
 import { API, Auth, Amplify } from "aws-amplify";
 import { AsyncStorage } from "react-native";
+import APIConfig from "../Config/AppConfig"
 
 function confirmForgotPasswordWithApi(
   email: any,
@@ -52,7 +53,7 @@ async function registerWithApi(email: any, password: any, fullName: any) {
       }),
     };
     console.log("Calling API");
-    let response = await fetch(`${process.env.REACT_APP_URL}/user/`, init);
+    let response = await fetch(`${APIConfig.REACT_APP_URL}/user/`, init);
     response = await response.json();
     return response;
     //console.log("reponse", response.data);

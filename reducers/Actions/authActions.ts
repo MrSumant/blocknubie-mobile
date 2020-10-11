@@ -63,7 +63,6 @@ export const registerSuccess = (user: any) => ({
 export const registerFailure = (message: any) => ({
     type: AuthActions.REGISTER_FAILURE,
     payload: message
-    //error: translateError(error)
 });
 
 export const confirmSignupRequest = ({ email, confirmationCode }) => ({
