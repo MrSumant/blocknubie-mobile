@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { confirmSignupRequest, resendCodeRequest } from "../reducers/Actions/authActions";
 import ErrorMessage from "../components/ErrorMessage";
 import { View, Image, Text, StyleSheet } from "react-native";
-import classes from "../assets/CSS/RegisterLoginViewStyle";
+import classes from "../assets/css/RegisterLoginViewStyle";
 import { validateEmail, validatePassword } from "../Utilities/Utility";
 import {
   Container,
@@ -20,15 +20,14 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const logo = require("../assets/images/Blocknubie-logo.png");
 
-const ConfirmAccountView = (auth, navigation) => {
+const ConfirmAccountView = ({confirmSignupRequest, resendCodeRequest, auth, navigation}) => {
     const [confirmationCode, setConfirmationCode] = useState("");
     const { email, confirmingSignup, signupConfirmed, confirmationError, resendingCode, codeResent } = auth;
     
-    const handleSubmit = (event: { preventDefault: () => void }) => {
-        event.preventDefault();
+    const handleSubmit = () => {
         confirmSignupRequest({
             email,
-            confirmationCode
+            confirmationCode,
         });
     };
 
@@ -37,19 +36,27 @@ const ConfirmAccountView = (auth, navigation) => {
         resendCodeRequest({ email })
     };
 
+    const validate = () => confirmationCode.length > 5;
+
+    const codeSentSuccess = !resendingCode && codeResent ? (
+      <View>
+        <Text>Code sent successfully!</Text>
+      </View>
+    ) : null
+
     const noEmailProvided = !email
         ? navigation.navigate("Login") : null;
     
-    const successfullyConfirmed = !confirmingSignup & signupConfirmed 
-        ? navigation.navigate("Login") : null;
-
-    if (!confirmingSignup && confirmationError) {
-    return (
+    const successfullyConfirmed = !confirmingSignup && signupConfirmed 
+        ? navigation.navigate("Login") 
+        : null;
+    
+    const errorText = 
+      !confirmingSignup && confirmationError ? (
         <View>
-          <ErrorMessage messageId={signInError.id} />
+          <ErrorMessage messageId={confirmationError.id} />
         </View>
-      );
-    }
+      ) : null;
     
     return (
         <ScrollView style={classes.container}>
@@ -57,17 +64,20 @@ const ConfirmAccountView = (auth, navigation) => {
             <Form style={styles.loginForm}>
             <Item rounded style={styles.input}>
               <Input
-                onChangeText={(text) => setEmail(text)}
+                onChangeText={(text) => setConfirmationCode(text)}
                 keyboardType="number-pad"
                 autoFocus={true}
                 placeholder="Confirmation Code"
               />
             </Item>
+            <Item>
+            {codeSentSuccess}
+            {errorText}
+            </Item>
             </Form>
-            <Button
-                full
-                style={classes.button}
-                onPress={(e: any) => handleSubmit(e)}
+            <Button full style={classes.button}
+                onPress={() => handleSubmit()}
+                disabled={!validate()}
             >
                 <Text style={classes.buttonText}>Confirm Account</Text>
             </Button>
@@ -75,7 +85,7 @@ const ConfirmAccountView = (auth, navigation) => {
                 full transparent
                 onPress={(e: any) => handleResendCode(e)}
             >
-                <Text style={classes.buttonText}>Resend Code</Text>
+                <Text style={styles.buttonresend}>Resend Code</Text>
             </Button>
         </ScrollView>
     );
@@ -86,15 +96,24 @@ const styles = StyleSheet.create({
       fontWeight: "bold"
     },
 
+    buttonresend: {
+      fontWeight: "bold",
+      color: "#000000",
+      fontSize: 18,
+    },
+    
     input: {
       marginVertical: 10,
       marginRight: 20,
       marginLeft: 20,
       alignSelf: "center",
+      paddingLeft: 20,
     },
+
     label: {
       paddingLeft: 25,
     },
+
     loginForm: {
       flex: 1,
       flexDirection: "column",
@@ -103,12 +122,13 @@ const styles = StyleSheet.create({
     },
   });
   
-const mapDispatchToProps = dispatch => ({
+  const mapDispatchToProps = 
+    (    dispatch: (arg0: { type: string; payload: { email: any; confirmationCode: any; } | { email: any; }; }) => any) => ({
     confirmSignupRequest: ({ email, confirmationCode }) =>
-      dispatch(confirmSignupRequest({ email, confirmationCode })), 
+      dispatch(confirmSignupRequest({ email, confirmationCode })),
     resendCodeRequest: ({ email }) =>
-      dispatch(resendCodeRequest({ email }))
-});
+      dispatch(resendCodeRequest({ email })),
+  });
 
   
 const mapStateToProps = ({ auth }) => ({ auth });

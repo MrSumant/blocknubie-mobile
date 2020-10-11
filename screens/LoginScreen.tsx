@@ -46,16 +46,15 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
 
   const notConfirmed =
     !signingIn && userUnconfirmed
-      ? navigation.navigate("confirm-account")
+      ? navigation.navigate("Confirm-Account")
       : null;
 
-  if (!signingIn && signInError) {
-    return (
+  const errorText = 
+    !signingIn && signInError ? (
       <View>
         <ErrorMessage messageId={signInError.id} />
       </View>
-    );
-  }
+  ) : null;
 
   return (
         <ScrollView style={classes.container}>
@@ -83,8 +82,15 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
                 placeholder="Password"
               />
             </Item>
+            <Item>
+            {errorText}
+            </Item>
           </Form>
-          <Button full style={classes.button} onPress={() => handleSubmit()}>
+          
+          <Button full style={classes.button} 
+          onPress={() => handleSubmit()}
+          disabled={signingIn || !validate()}
+          >
             <Text style={classes.buttonText}>Login</Text>
           </Button>
           <Button full transparent
@@ -93,7 +99,7 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
             <H3>Create new account</H3>
           </Button>
           <Button full transparent
-            //onPress={navigation.navigate("Register")}
+            onPress={() => navigation.navigate("ForgotPassword")}
           >
             <H3>Forgot password</H3>
           </Button>
@@ -119,7 +125,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
+    alignItems: "center",
   },
 });
 

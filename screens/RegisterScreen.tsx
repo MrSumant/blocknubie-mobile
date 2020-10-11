@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { registerRequest } from "../reducers/Actions/authActions";
 import ErrorMessage from "../components/ErrorMessage";
 import { View, Image, Text, StyleSheet } from "react-native";
-import classes from "../assets/CSS/RegisterLoginViewStyle";
+import classes from "../assets/css/RegisterLoginViewStyle";
 import { validateEmail, validatePassword } from "../Utilities/Utility";
 import {
   Container,
@@ -46,15 +46,13 @@ const RegisterView = ({ registerRequest, auth, navigation }) => {
     const { registering, registered, registrationError } = auth;
 
     if (registered) {
-        navigation.navigate("Confirm-Account")
+       navigation.navigate("ConfirmAccount")
     }
     
-
-
     const errorText =
             !registering && registrationError ? (
                 <View>
-                    {registrationError}
+                  <Text style={styles.errortext}>{registrationError}</Text>
                 </View>
             ) : null;
 
@@ -90,6 +88,9 @@ const RegisterView = ({ registerRequest, auth, navigation }) => {
                     placeholder="Confirm Password"
                     />
                     </Item>
+                    <Item>
+                      {errorText}
+                    </Item>
                 </Form>
                 <Button
                     full
@@ -112,6 +113,10 @@ const styles = StyleSheet.create({
         paddingLeft: 20
     },
 
+    errortext: {
+      color: "#FF0000",
+    },
+
     input: {
       marginVertical: 10,
       marginRight: 20,
@@ -125,7 +130,7 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: "column",
       justifyContent: "flex-start",
-      alignItems: "flex-start",
+      alignItems: "center",
     },
   });
   
