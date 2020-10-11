@@ -5,15 +5,14 @@ import { connect } from "react-redux";
 import classes from "../assets/css/RegisterLoginViewStyle";
 import WaitMessage from "../components/WaitMessage";
 import { caseConfirmRequest } from "../reducers/Actions/authActions";
-const logo = require("../assets/images/Blocknubie-logo.png");
 
-const CaseCreationScreen = memo(({ caseConfirm, navigation, auth }) => {
+const CaseCreationScreen = memo(({ caseConfirmRequest }) => {
   const [confirmed, setConfirmed] = useState(false);
   const [symptoms, setSymptoms] = useState("");
-  const [details, setDetails] = useState("");
-  const [uploads, setUploads] = useState("");
+  const [details] = useState("");
+  const [uploads] = useState("");
   const handleSubmit = () => {
-    caseConfirm({
+    caseConfirmRequest({
       symptoms: symptoms,
       details: details,
       uploads: uploads,
@@ -23,8 +22,6 @@ const CaseCreationScreen = memo(({ caseConfirm, navigation, auth }) => {
       //   navigation.push();
     }, 5000);
   };
-
-  const validate = () => symptoms.length > 0 && details.length > 0;
 
   return (
     <>
@@ -102,7 +99,7 @@ const mapDispatchToProps = (
     payload: { symptoms: any; details: any; uploads: any };
   }) => any
 ) => ({
-  caseConfirm: ({ symptoms, details, uploads }) =>
+  caseConfirmRequest: ({ symptoms, details, uploads }) =>
     dispatch(caseConfirmRequest(symptoms, details, uploads)),
 });
 
