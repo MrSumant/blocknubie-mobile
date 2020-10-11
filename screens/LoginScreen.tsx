@@ -31,7 +31,7 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
       password,
     });
   };
-  
+
   const validate = () =>
     email.length > 0 &&
     password.length > 0 &&
@@ -39,7 +39,6 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
     validatePassword(password);
 
   const { signingIn, signInError, userUnconfirmed, authenticated } = auth;
-
   const successfulSignin = authenticated
     ? navigation.navigate("Welcome")
     : null;
@@ -49,67 +48,62 @@ const LoginView = ({ signInRequest, auth, navigation }) => {
       ? navigation.navigate("Confirm-Account")
       : null;
 
-  const errorText = 
+  const errorText =
     !signingIn && signInError ? (
       <View>
         <ErrorMessage messageId={signInError.id} />
       </View>
-  ) : null;
+    ) : null;
 
   return (
-        <ScrollView style={classes.container}>
-          <Image style={classes.stretch} source={logo} />
-          <Form style={styles.loginForm}>
-            <Item rounded style={styles.input}>
-              <Icon
-                active
-                style={styles.label}
-                name="user-o"
-                type="FontAwesome"
-              />
-              <Input
-                onChangeText={(text) => setEmail(text)}
-                keyboardType="email-address"
-                autoFocus={true}
-                placeholder="Username"
-              />
-            </Item>
-            <Item rounded last style={styles.input}>
-              <Icon active name="lock" type="Feather" />
-              <Input
-                onChangeText={(text) => setPassword(text)}
-                secureTextEntry={true}
-                placeholder="Password"
-              />
-            </Item>
-            <Item>
-            {errorText}
-            </Item>
-          </Form>
-          
-          <Button full style={classes.button} 
-          onPress={() => handleSubmit()}
-          disabled={signingIn || !validate()}
-          >
-            <Text style={classes.buttonText}>Login</Text>
-          </Button>
-          <Button full transparent
-            onPress={() => navigation.navigate("Register")}
-          >
-            <H3>Create new account</H3>
-          </Button>
-          <Button full transparent
-            onPress={() => navigation.navigate("ForgotPassword")}
-          >
-            <H3>Forgot password</H3>
-          </Button>
-        </ScrollView>
+    <ScrollView style={classes.container}>
+      <Image style={classes.stretch} source={logo} />
+      <Form style={styles.loginForm}>
+        <Item rounded style={styles.input}>
+          <Icon active style={styles.label} name="user-o" type="FontAwesome" />
+          <Input
+            onChangeText={(text) => setEmail(text)}
+            keyboardType="email-address"
+            autoFocus={true}
+            placeholder="Username"
+          />
+        </Item>
+        <Item rounded last style={styles.input}>
+          <Icon active name="lock" type="Feather" />
+          <Input
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry={true}
+            placeholder="Password"
+          />
+        </Item>
+        <Item>{errorText}</Item>
+      </Form>
+
+      <Button
+        full
+        style={classes.button}
+        onPress={() => handleSubmit()}
+        disabled={signingIn || !validate()}
+      >
+        <Text style={classes.buttonText}>Login</Text>
+      </Button>
+      <Button full transparent onPress={() => navigation.navigate("Register")}>
+        <H3>Create new account</H3>
+      </Button>
+      <Button
+        full
+        transparent
+        onPress={() => navigation.navigate("ForgotPassword")}
+      >
+        <H3>Forgot password</H3>
+      </Button>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   boldText: {
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
 
   input: {
